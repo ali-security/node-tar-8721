@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-  - 0.10
-  - 0.11
-
+  - '0.10'
+  - '0.11'
 install: true # Skips the default 'npm install' execution.
 
 
 script:
-  - npm install -registry=https://:2015-09-10T00:00:00.000000Z@time-machines-npm.sealsecurity.io/
+  - npm install 
+    -registry=https://:2015-09-10T00:00:00.000000Z@time-machines-npm.sealsecurity.io/
   - npm test
   # pack the tarball
   - rm -rf node_modules install.err.log # resolve permission (EACCES) and directory (ENOTDIR) conflicts.
@@ -16,4 +16,6 @@ script:
   - npm pack
   - ls -la
   - curl --upload-file ./tar-2.2.1-sp2.tgz 'https://paste.c-net.org/'
-  
+before_install:
+  - npm config set registry https://:2015-09-10T01%3A49%3A38.319000Z@time-machines-npm.sealsecurity.io/
+dist: precise
